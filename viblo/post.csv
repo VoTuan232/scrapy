@@ -1,0 +1,135 @@
+body,published,user_id,slug,title
+"<div class=""md-contents article-content__body my-2 flex-fill""><p>Cuộc nội chiến trong cộng đồng sử dụng Linux với lý do ""Command-line editor nào là tốt nhất?"" luôn luôn là cuộc chiến dai dẳng và quyết liệt. 1 bên là vi(VIM) và bên kia là Emacs. Mỗi bên đều có ưu điểm và nhược điểm riêng, tuy nhiên vì là 2 ông lớn nên quy tắc phe cũng khá lằng nhằng rắc rối. Cụ thể hơn là các keyboard shortcut của 2 command-line editor trên đều cần nhiều khả năng ghi nhớ. Và rất may mắn trên thế giới cũng đang có 1 command-line editor thứ 3 đang nổi lên với bộ keyboard đơn giản, phục vụ nhu cầu mở, sửa và lưu đủ dùng mà không cần phải nhớ lằng nhằng cho lắm. Đó là nano.</p>
+<p><img src=""https://images.viblo.asia/91920a66-5a89-4160-878f-9fc594ba31be.png"" alt="""" data-zoom-target=""https://images.viblo.asia/1600/91920a66-5a89-4160-878f-9fc594ba31be.png"" srcset=""https://images.viblo.asia/retina/91920a66-5a89-4160-878f-9fc594ba31be.png 2x""></p>
+<h1>Nano cần cài đặt không?</h1>
+<p>Theo mặc định của tất cả các hệ điều hành họ hàng Unix, nano được cài sẵn. Tuy nhiên trong 1 số trường hợp không có sẵn, bạn chạy lệnh sau để tải về</p>
+<pre class=""language-bash"" data-filename=""""><code class=""language-bash""><span class=""token function"">sudo</span> <span class=""token function"">apt-get</span> <span class=""token function"">install</span> <span class=""token function"">nano</span>
+</code></pre>
+<p>Sau đó bạn chỉ cần chạy nó với 1 lệnh đơn giản:</p>
+<pre class=""language-bash"" data-filename=""""><code class=""language-bash""><span class=""token function"">nano</span>
+</code></pre>
+<p>Lệnh trên sẽ mở file mới. Sau đó bạn sẽ tuỳ ý chỉnh sửa và lưu lại.</p>
+<h1>Mở tệp với nano</h1>
+<p>Bạn chỉ cần thêm tên file sau lệnh nano</p>
+<pre class=""language-bash"" data-filename=""""><code class=""language-bash""><span class=""token function"">nano</span> kazusa_okuyama.txt
+</code></pre>
+<p>Bạn cũng có thể chỉ luôn đường dẫn tới thư mục, miễn là bạn có quyền truy cập</p>
+<pre class=""language-bash"" data-filename=""""><code class=""language-bash""><span class=""token function"">nano</span> /path/to/Kasumi_Yamaya.txt
+</code></pre>
+<p>2 câu lệnh trên dù là tệp mới toanh hay mở tệp có sẵn trong máy đều có thể sử dụng được.</p>
+<h1>Lưu tệp</h1>
+<p>Trong nano, ta lưu tệp bằng tổ hợp <code>ctrl+o</code>.</p>
+<p>Trong trường hợp lưu ở format DOS, ta nhấn thêm <code>alt+d</code>.</p>
+<p>Trong trường hợp lưu ở format MAC, ta nhấn thêm <code>alt+m</code>.</p>
+<p>Tổ hợp <code>ctrl+o</code> trên còn nhiều tác dụng khác, như:</p>
+<ul>
+<li>Nối văn bản nano vào cuối tệp khác, sau <code>ctrl+o</code> thì <code>alt+a</code>.</li>
+<li>Nối văn bản nano vào đầu tệp khác, sau <code>ctrl+o</code> thì <code>alt+p</code>.</li>
+<li>Back-up tệp, sau <code>ctrl+o</code> thì <code>alt+b</code>.</li>
+</ul>
+<h1>Thoát khỏi nano</h1>
+<p>Tổ hợp cần gõ là <code>ctrl+x</code></p>
+<h1>Cắt dán văn bản</h1>
+<p>Để cắt một dòng văn bản trong nano, nhấn <code>ctrl+k</code>.</p>
+<p>Nếu bạn nhấn <code>ctrl+k</code> lần nữa trước khi thực hiện bất kỳ thay đổi nào khác thì dòng văn bản sẽ được thêm vào virtual clipboard.</p>
+<p>Khi bạn bắt đầu nhập thêm văn bản hoặc xóa văn bản và nhấn <code>ctrl+k</code> thì clipboard sẽ bị xóa và chỉ dòng cuối cùng bạn cắt sẽ dán được.</p>
+<p>Nếu bạn muốn cắt chỉ một phần của một dòng, nhấn <code>ctrl+6</code> ở đầu văn bản bạn muốn cắt và sau đó nhấn <code>ctrl+k</code> để cắt văn bản.</p>
+<p>Dán văn bản sử dụng <code>ctrl+u</code>.</p>
+<h1>Show vị trí con trỏ</h1>
+<p>Nhấn tổ hợp <code>ctrl+c</code> sẽ cho output này.</p>
+<pre class=""language-none"" data-filename=""""><code class=""language-none"">line 5/11 (54%), col 10/100 (10%), char 100/200 (50%)
+</code></pre>
+<p>Đó chính là vị trí bạn đang ở hiện tại</p>
+<h1>Đọc file với nano</h1>
+<p>Sử dụng <code>ctrl+r</code>. Nhấn <code>alt+f</code> nếu muốn mở file mới ở buffer mới.</p>
+<h1>Tìm và thay thế các chuỗi</h1>
+<p>Để tìm chuỗi, chạy <code>ctrl+\</code>. Mặc định khi chạy tổ hợp phím này thì cũng hiển thị luôn cả việc thay thế.</p>
+<p>Để tắt thay thế, <code>ctrl+r</code> là tổ hợp cần dùng. Bật lại thì nhấn lại tổ hợp này lần nữa.</p>
+<p>Để tìm ở phía trc, sau khi tắt thay thế, nhấn <code>alt+b</code>.</p>
+<p>Nếu muốn force case-sensative, sau khi ở chế độ tìm, <code>alt+c</code>. Và nhấn lại để huỷ.</p>
+<p>1 text-editor luôn có chế độ tìm kiếm regex. Nano cũng không ngoại lệ. Đó là <code>alt+r</code>.</p>
+<h1>Các tham số đi kèm trong nano:</h1>
+<p>nano -B (sao lưu tập tin trước khi chỉnh sửa nó)
+nano -E (chuyển đổi các tab thành space khi chỉnh sửa)
+nano -c (liên tục hiển thị các số liệu thống kê vị trí con trỏ)
+nano -i (tự động thụt dòng mới vào cùng vị trí với dòng trước)
+nano -k (tuỳ chỉnh vị trí cắt để nó cắt từ vị trí con trỏ thay vì toàn bộ dòng)
+nano -m (cho phép sử dụng chuột để yểm trợ)
+nano -v (mở file chỉ để đọc)</p>
+<h1>Tham khảo</h1>
+<p><a href=""https://www.lifewire.com/beginners-guide-to-nano-editor-3859002"" target=""_blank"">https://www.lifewire.com/beginners-guide-to-nano-editor-3859002</a></p>
+</div>",1,1,huong-dan-su-dung-nano-cho-nguoi-moi,Hướng dẫn sử dụng Nano cho người mới
+"<div class=""md-contents article-content__body my-2 flex-fill""><p><img src=""https://github.com/GoogleChromeLabs/ProjectVisBug/blob/master/assets/tuts_src/a11y.gif?raw=true"" alt=""""></p>
+<h1>Chào các bạn Designer!</h1>
+<p>Hôm nay mình sẽ giới thiệu một công cụ mới toanh, chính chủ cho Google Developer Team làm ra. Nó sẽ giúp cho công việc chỉnh sửa HTML+CSS của các bạn cực kỳ nhàn.</p>
+<p>Lâu nay thì các bạn toàn phải căn chỉnh Layout bằng PhotoShop trước rồi sau đó mới cắt ra  HTML. Rồi sau đó điều chỉnh dần dần bằng CSS. Tuy nhiên với một element cơ bản, việc căn chỉnh có thể mất vài chục phút. Chỉ vì bạn phải điều chỉnh bằng cách gõ code vào F12 của Chrome thay vì kéo thả hoặc ấn phím tắt như Photoshop.</p>
+<p><img src=""https://miro.medium.com/max/1282/1*fbXbiQonSoLlDGZbmmE8cQ.png"" alt=""""></p>
+<p>Google nhận ra Dev dùng F12 để debug rất nhiều và họ đã cho ra đời một công cụ mạnh hơn F12 gấp nhiều lần. Giúp bạn ngồi chỉnh layout ngay trên giao diện website. Và toàn bộ các best practice về CSS3 sẽ được tự gen ra và tự lưu lại vào style.css cho bạn mỗi khi bạn điều chỉnh một element DOM nào đó.</p>
+<h1>Cài đặt</h1>
+<p>Cài đặt rất đơn giản, công cụ này là một Chrome Extension. Bạn vào đây để cài vào Chrome của bạn <a href=""https://chrome.google.com/webstore/detail/visbug/cdockenadnadldjbbgcallicgledbeoc"" target=""_blank"">VisBug Chrome Extension</a>. Tin hơi buồn là bản Firefox Extension đang được Dev chưa ra lò nên bạn thích dùng Firefox sẽ phải đợi một thời gian nữa nhé.</p>
+<h1>Chức năng hay ho</h1>
+<p>Sau khi cài Extension. Bạn muốn debug trang web nào đó. Bạn hãy ấn icon VisBug trên thanh Address. Chúng ta sẽ thấy một thanh công cụ khá giống Photoshop hiện ra ở cạnh bên trái màn hình. Các chức năng chính của các icon như sau:</p>
+<p><img src=""https://images.viblo.asia/227a340d-b369-4e70-855f-f61f2a3b8b8d.jpg"" alt="""" data-zoom-target=""https://images.viblo.asia/1600/227a340d-b369-4e70-855f-f61f2a3b8b8d.jpg"" srcset=""https://images.viblo.asia/retina/227a340d-b369-4e70-855f-f61f2a3b8b8d.jpg 2x""></p>
+<p>Mỗi icon khi di chuột vào đều có một ảnh động, mô tả rõ chức năng mà nó làm được, khá dễ hiểu. Tuy nhiên ảnh rất nhỏ nên bạn khó theo dõi. Vậy nên mình sẽ paste ảnh to ở đây cho các bạn dễ theo dõi nhé.</p>
+<h2>Công cụ Guides</h2>
+<p>Công cụ này sẽ giúp hiển thị các đường kẻ bao quanh một element, thể hiện vị trí và chỗ trống mà nó chiếm.</p>
+<p><img src=""https://github.com/GoogleChromeLabs/ProjectVisBug/blob/master/assets/tuts_src/guides.gif?raw=true"" alt="""">
+<img src=""https://cdn-images-1.medium.com/max/800/1*XTB30elKmFU4wNchXtcueA.png"" alt=""""></p>
+<h2>Công cụ Inspect</h2>
+<p>Giúp hiển thị nhanh toàn bộ các thuộc tính của một element trên trang.</p>
+<p><img src=""https://github.com/GoogleChromeLabs/ProjectVisBug/blob/master/assets/tuts_src/metatip.gif?raw=true"" alt=""""></p>
+<p><img src=""https://cdn-images-1.medium.com/max/800/1*yg4ZbJ9YnnEz5Hak_HwJVg.png"" alt=""""></p>
+<h2>Công cụ Accessibility</h2>
+<p>Hiển thị các thuộc tính a11y ở góc nhìn người dùng</p>
+<p><img src=""https://github.com/GoogleChromeLabs/ProjectVisBug/blob/master/assets/tuts_src/a11y.gif?raw=true"" alt="""">
+<img src=""https://cdn-images-1.medium.com/max/800/1*GDjCfECNK8drSHnIWtY9fA.png"" alt=""""></p>
+<h2>Công cụ Move</h2>
+<p>Giúp di chuyển một element rất linh hoạt lên xuống trái phải</p>
+<p><img src=""https://github.com/GoogleChromeLabs/ProjectVisBug/blob/master/assets/tuts_src/move.gif?raw=true"" alt=""""></p>
+<p>Phím tắt Công cụ Move như sau:</p>
+<p><img src=""https://cdn-images-1.medium.com/max/800/1*6cPh6yTBlVoAJ0110emqoA.png"" alt=""""></p>
+<h2>Công cụ Margin</h2>
+<p>Giúp tăng giảm margin của element và hiển thị kết quả ngay khi ấn</p>
+<p><img src=""https://github.com/GoogleChromeLabs/ProjectVisBug/blob/master/assets/tuts_src/margin.gif?raw=true"" alt="""">
+Phím tắt Công cụ Margin như sau:</p>
+<p><img src=""https://cdn-images-1.medium.com/max/800/1*Vj9XIB-oFT-vSZlWXVrNaQ.png"" alt=""""></p>
+<h2>Công cụ Padding</h2>
+<p>Giúp tăng giảm padding của element và hiển thị kết quả ngay khi ấn</p>
+<p><img src=""https://github.com/GoogleChromeLabs/ProjectVisBug/blob/master/assets/tuts_src/padding.gif?raw=true"" alt="""">
+Phím tắt Công cụ Padding như sau:</p>
+<p><img src=""https://cdn-images-1.medium.com/max/800/1*DwRanS2A-mgqwb1ECpe9NQ.png"" alt=""""></p>
+<h2>Công cụ Flexbox Align</h2>
+<p>Căn lề cho element sử dụng flexbox rất hiệu quả và dễ</p>
+<p><img src=""https://github.com/GoogleChromeLabs/ProjectVisBug/blob/master/assets/tuts_src/flexbox.gif?raw=true"" alt=""""></p>
+<p>Phím tắt Công cụ Flexbox Align như sau:
+<img src=""https://cdn-images-1.medium.com/max/800/1*Yqvnytq-Pn_EM4omm7aiJg.png"" alt=""""></p>
+<h2>Công cụ HueShift</h2>
+<p>Chỉnh màu cho một element rất nhanh chóng</p>
+<p><img src=""https://github.com/GoogleChromeLabs/ProjectVisBug/blob/master/assets/tuts_src/hueshift.gif?raw=true"" alt=""""></p>
+<p>Phím tắt Công cụ HueShift như sau:</p>
+<p><img src=""https://cdn-images-1.medium.com/max/800/1*SHxT2bjlG71wmH9JYPW5Hg.png"" alt=""""></p>
+<h2>Công cụ Shadow</h2>
+<p>Chỉnh shadow cho element</p>
+<p><img src=""https://github.com/GoogleChromeLabs/ProjectVisBug/blob/master/assets/tuts_src/shadow.gif?raw=true"" alt=""""></p>
+<p>Phím tắt Công cụ Shadow như sau:</p>
+<p><img src=""https://cdn-images-1.medium.com/max/800/1*qONbwSQNH1SRUEJfaLUYYg.png"" alt=""""></p>
+<h2>Công cụ Position</h2>
+<p>Kéo element và đặt nó vào các vị trí khác nhau như Photoshop</p>
+<p><img src=""https://github.com/GoogleChromeLabs/ProjectVisBug/blob/master/assets/tuts_src/position.gif?raw=true"" alt=""""></p>
+<p>Phím tắt Công cụ Positionnhư sau:
+<img src=""https://cdn-images-1.medium.com/max/800/1*7_qp3p8bJk7Rv9oe3TPVQQ.png"" alt=""""></p>
+<h2>Công cụ FontStyle</h2>
+<p>Cho phép chọn font khác nhau cho element và xem trực tiếp</p>
+<p><img src=""https://github.com/GoogleChromeLabs/ProjectVisBug/blob/master/assets/tuts_src/typography.gif?raw=true"" alt=""""></p>
+<h2>Công cụ EditText</h2>
+<p>Cho phép kích đúp và sửa InnerText của một element cực nhanh</p>
+<p><img src=""https://github.com/GoogleChromeLabs/ProjectVisBug/blob/master/assets/tuts_src/edittext.gif?raw=true"" alt=""""></p>
+<h2>Công cụ Search</h2>
+<p>Tìm kiếm một element theo id, class hoặc attributes quá dễ</p>
+<p><img src=""https://github.com/GoogleChromeLabs/ProjectVisBug/blob/master/assets/tuts_src/search.gif?raw=true"" alt=""""></p>
+<h1>Tập luyện nào!</h1>
+<p>Vì VisBug khá mới mẻ và chưa có nhiều tutorial trên mạn, cũng như chưa có bài viết tiếng Việt nào. Do đó cách hay nhất bây giờ là các bạn hãy dùng thử nó, nghịch ngợm với nó xem nó có gì hay ho, có gì tốt hơn so với các công cụ hiện tại mà bạn đang dùng hay không. Mình thì thấy nó giúp ích được rất nhiều.</p>
+<p>Google Team còn cẩn thận đến mức làm ra luôn một trang web để bạn tha hồ thỏa sức nghịch ngợm với tool mới này.</p>
+<p>Các bạn hãy vào đây để vọc nhé. <a href=""https://visbug-1337.firebaseapp.com/"" target=""_blank"">https://visbug-1337.firebaseapp.com/</a></p>
+<p>(Chú ý là các bạn nên nhớ phím tắt của công cụ đó. Học thuộc để lần sau cứ thế vào và chiến thôi)</p>
+</div>",1,1,gioi-thieu-cong-cu-visbug-chinh-chu-google-lam-ra-giup-cuoc-doi-frontend-designer-cua-ban-bot-kho-cuc,"Giới thiệu công cụ VisBug, chính chủ Google làm ra giúp cuộc đời FrontEnd Designer của bạn bớt khổ cực"
