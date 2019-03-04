@@ -5,8 +5,10 @@ from pprint import pprint
 import urllib
 import csv
 from slugify import slugify
+import requests
 
 class Main(scrapy.Spider):
+    # get all url
     # name = "url_post_single"
 
     # start_urls = [
@@ -23,14 +25,52 @@ class Main(scrapy.Spider):
     #     if next_page is not None:
     #         next_page = response.urljoin(next_page)
     #         yield scrapy.Request(next_page, callback=self.parse)
+    #         
+    # get url not container \u        
+    # name = "url_post_single"
+    # start_urls = [
+    #     'https://viblo.asia/newest?page=155',
+    # ]
+
+    # def parse(self, response):
+    #         for urlDiv in response.css('div.post-feed-item'):
+    #             body = 'https://viblo.asia' + urlDiv.css('div.post-feed-item div.post-feed-item__info div.post-title--inline h3 a::attr(href)').get()
+    #             try:
+    #                 if body.encode('ascii'):
+    #                     yield {
+    #                         'body': body
+    #                     }
+    #             except Exception:
+    #                 pass
+    #         next_page = 'https://viblo.asia' + response.css('ul.pagination li.page-item')[1].css('a::attr(href)').get()
+    #         if next_page is not None:
+    #             next_page = response.urljoin(next_page)
+    #             yield scrapy.Request(next_page, callback=self.parse)
+
+    # get url_single_post
     name = "post"
 
-    start_urls = [
-        'https://viblo.asia/p/huong-dan-su-dung-nano-cho-nguoi-moi-vyDZOYxQ5wj',
-        'https://viblo.asia/p/gioi-thieu-cong-cu-visbug-chinh-chu-google-lam-ra-giup-cuoc-doi-frontend-designer-cua-ban-bot-kho-cuc-YWOZrz8pZQ0',
-    ]
+    urls = []
+    with open('url_single.json') as json_file:  
+        data = json.load(json_file)
+        i = 0
+        for p in data:
+            i +=1
+            # if i < 1000:
+            if i < 15000 and i > 14000:
+                urls.append(p['body'])
+            # else:
+            #     break
 
-
+    start_urls = urls
+    
+    # start_urls = [
+    #     'https://viblo.asia/p/huong-dan-su-dung-nano-cho-nguoi-moi-vyDZOYxQ5wj',
+    #     'https://viblo.asia/p/gioi-thieu-cong-cu-visbug-chinh-chu-google-lam-ra-giup-cuoc-doi-frontend-designer-cua-ban-bot-kho-cuc-YWOZrz8pZQ01',
+    #     'https://viblo.asia/p/gioi-thieu-cong-cu-visbug-chinh-chu-google-lam-ra-giup-cuoc-doi-frontend-designer-cua-ban-bot-kho-cuc-YWOZrz8pZQ01',
+    #     'https://viblo.asia/p/laravel-eloquent-relationship-la-cai-qq-gi-vay-bWrZng3Olxw',
+    #     'https://viblo.asia/p/laravel-eloquent-relationship-la-cai-qq-gi-vay-bWrZng3Olxw1',
+    # ]
 
     # def to_write(uni_str):
     #     return urllib.unquote(uni_str.encode('utf8')).decode('utf8')
