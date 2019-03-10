@@ -10,28 +10,24 @@ import requests
 class Main(scrapy.Spider):
     # get all url
     # name = "url_post_single"
-
     # start_urls = [
     #     'https://viblo.asia/newest',
     # ]
-
     # def parse(self, response):
     #     for urlDiv in response.css('div.post-feed-item'):
     #         yield {
     #             'body': 'https://viblo.asia' + urlDiv.css('div.post-feed-item div.post-feed-item__info div.post-title--inline h3 a::attr(href)').get(),
     #         }
-
     #     next_page = 'https://viblo.asia' + response.css('ul.pagination li.page-item')[1].css('a::attr(href)').get()
     #     if next_page is not None:
     #         next_page = response.urljoin(next_page)
     #         yield scrapy.Request(next_page, callback=self.parse)
-    #         
+             
     # get url not container \u        
     # name = "url_post_single"
     # start_urls = [
     #     'https://viblo.asia/newest?page=155',
     # ]
-
     # def parse(self, response):
     #         for urlDiv in response.css('div.post-feed-item'):
     #             body = 'https://viblo.asia' + urlDiv.css('div.post-feed-item div.post-feed-item__info div.post-title--inline h3 a::attr(href)').get()
@@ -47,29 +43,60 @@ class Main(scrapy.Spider):
     #             next_page = response.urljoin(next_page)
     #             yield scrapy.Request(next_page, callback=self.parse)
 
-    # get url_single_post
-    name = "post"
-
+    # get url_single_post from file json
+    # name = "post"
+    # urls = []
+    # with open('url_single.json') as json_file:  
+    #     data = json.load(json_file)
+    #     i = 0
+    #     for p in data:
+    #         i +=1
+    #         # if i < 1000:
+    #         if i < 15000 and i > 14000:
+    #             urls.append(p['body'])
+    #         # else:
+    #         #     break
+    # start_urls = urls
+    
+     
+    # get url single questions
+    # name = "url_question_single"
+    # start_urls = [
+    #     'https://viblo.asia/questions',
+    # ]
+    # def parse(self, response):
+    #         for urlDiv in response.css('div.question-item'):
+    #             body = 'https://viblo.asia' + urlDiv.css('div.summary div.q-title a::attr(href)').get()
+    #             try:
+    #                 if body.encode('ascii'):
+    #                     yield {
+    #                         'body': body
+    #                     }
+    #             except Exception:
+    #                 pass
+    #         next_page = 'https://viblo.asia' + response.css('ul.pagination li.page-item')[1].css('a::attr(href)').get()
+    #         if next_page is not None:
+    #             next_page = response.urljoin(next_page)
+    #             yield scrapy.Request(next_page, callback=self.parse)
+    #             
+    # get url questions from file json
+    name = "questions"
     urls = []
-    with open('url_single.json') as json_file:  
+    with open('url_question_single.json') as json_file:  
         data = json.load(json_file)
         i = 0
         for p in data:
             i +=1
             # if i < 1000:
-            if i < 15000 and i > 14000:
-                urls.append(p['body'])
+            # if i == 1:
+            # if i < 15000 and i > 14000:
+            urls.append(p['body'])
             # else:
             #     break
-
     start_urls = urls
-    
+                        
     # start_urls = [
-    #     'https://viblo.asia/p/huong-dan-su-dung-nano-cho-nguoi-moi-vyDZOYxQ5wj',
-    #     'https://viblo.asia/p/gioi-thieu-cong-cu-visbug-chinh-chu-google-lam-ra-giup-cuoc-doi-frontend-designer-cua-ban-bot-kho-cuc-YWOZrz8pZQ01',
-    #     'https://viblo.asia/p/gioi-thieu-cong-cu-visbug-chinh-chu-google-lam-ra-giup-cuoc-doi-frontend-designer-cua-ban-bot-kho-cuc-YWOZrz8pZQ01',
-    #     'https://viblo.asia/p/laravel-eloquent-relationship-la-cai-qq-gi-vay-bWrZng3Olxw',
-    #     'https://viblo.asia/p/laravel-eloquent-relationship-la-cai-qq-gi-vay-bWrZng3Olxw1',
+    #     'https://viblo.asia/q/co-khi-nao-css-da-hien-thi-nhung-van-chua-duoc-load-QqKLQ0OOZ7z',
     # ]
 
     # def to_write(uni_str):
@@ -199,16 +226,29 @@ class Main(scrapy.Spider):
         unicode_str = unicode_str.replace("\u00C2\u0323", "\u1EAC")    # Ậ
         unicode_str = unicode_str.replace("\u00C2\u0303", "\u1EAA")    # Ẫ
         return unicode_str
-
+    # get body post
+    # def parse(self, response):
+    #     # print(type(response.css('h1.article-content__title::text').get()) is str) //false
+    #     # convert unicode -> str : encode('utf-8)  (dùng trước khi lưu string vào database)
+    #     # convert str -> unicode: decode(‘utf-8’)
+    #     title = response.css('h1.article-content__title::text').get().strip()
+    #     yield {
+    #         'title': title,
+    #         'body' : response.css('div.md-contents')[0].get().strip(),
+    #         'slug' : slugify(title),
+    #         'published' : 1,
+    #         'user_id' : 1,
+    #     }
+         
+    # get body question
     def parse(self, response):
         # print(type(response.css('h1.article-content__title::text').get()) is str) //false
         # convert unicode -> str : encode('utf-8)  (dùng trước khi lưu string vào database)
         # convert str -> unicode: decode(‘utf-8’)
-        title = response.css('h1.article-content__title::text').get().strip()
+        title = response.css('h1.word-break::text').get().strip()
         yield {
             'title': title,
             'body' : response.css('div.md-contents')[0].get().strip(),
             'slug' : slugify(title),
-            'published' : 1,
             'user_id' : 1,
-        }
+        }     
